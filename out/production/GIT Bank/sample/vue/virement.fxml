@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.VirementController">
    <children>
       <Text layoutX="176.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EFFECTUER UN VIREMEMENT">
@@ -18,7 +17,7 @@
       </Text>
       <ChoiceBox fx:id="destinataire" layoutX="225.0" layoutY="156.0" prefWidth="150.0" />
       <ChoiceBox fx:id="expedieteur" layoutX="225.0" layoutY="104.0" prefWidth="150.0" />
-      <Button fx:id="effectuervirement" layoutX="225.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="EFFECTUER" />
+      <Button fx:id="effectuervirement" layoutX="225.0" layoutY="238.0" mnemonicParsing="false" onAction="#virement" prefHeight="25.0" prefWidth="150.0" text="EFFECTUER" />
       <TextField fx:id="montantvirer" layoutX="226.0" layoutY="200.0" />
       <Label layoutX="149.0" layoutY="203.0" text="Montant">
          <font>

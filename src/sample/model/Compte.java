@@ -1,5 +1,7 @@
 package sample.model;
 
+import javafx.scene.control.Alert;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,22 +140,34 @@ public class Compte {
     }
 
     /**
-     * on recupere le compte désiré et la somme a transferer
+     * on recupere le compte débité et compte à créditer
      * on additionne la somme à transferer au solde du compte selectionné
-     * @param compte
+     * @param compte1
+     * @param compte2
      * @param montant
      */
     public void virement(Compte compte,double montant){
         if(montant > this.debitmax){
-            System.out.println("Opérartion annulée, le montant à debiter est supperieur au montant maximum a débiter");
+            String info = "Opérartion annulée, le montant à debiter est supperieur au débit maximum autorisé";
+            alert(info);
         }else if ((this.solde - Math.abs(montant)) < - this.decouvert  ){
-            System.out.println("Opération annulée, le solde de votre compte sera inférieur au decouvert de votre compte");
+            String info = "Opération annulée, le solde de votre compte sera inférieur au decouvert de votre compte";
+            alert(info);
         }else{
+
             this.solde -= montant;
+            String queryexpediteur = "UPDATE compte SET solde="+this.solde+" WHERE id="+this.id+"";
+            executeQuery(queryexpediteur);
             compte.crediter(compte, montant);
+            String info = montant+" FCA a été viré de "+this.getTitulaire()+" au profit de "+compte.getTitulaire();
+            alert(info);
         }
 
     }
+
+    /**
+     * cette méthode affiche toutes les information du compte
+     */
     public void afficher(){
         System.out.println("le numéro du compte est : "+this.numero);
         System.out.println("le propritaire du compte est : "+this.titulaire);
@@ -162,6 +176,12 @@ public class Compte {
         System.out.println("le debit maximum du compte est : "+this.debitmax+" FCFA");
         situationCompte();
     }
+
+    /**
+     * cette méthode cré les compte en fonction du solde de départ
+     * @param nomPropritaire
+     * @param solde
+     */
     public void createCompte(String nomPropritaire,double solde){
 
         if (solde == 0 ){
@@ -173,7 +193,8 @@ public class Compte {
             this.debitmax = 3000;
             String query = "INSERT INTO compte(id,numero,titulaire,solde,debitmax,decouvert) VALUES("+null+","+this.numero+","+this.titulaire+","+this.solde+","+this.debitmax+","+this.decouvert+")";
             executeQuery(query);
-            System.out.println("added record ");
+            String info = "le compte a été bien créé";
+            alert(info);
 
         }else{
             this.numero = genererNum();
@@ -183,9 +204,15 @@ public class Compte {
             this.titulaire = "'"+nomPropritaire+"'";
             String query = "INSERT INTO compte (id,numero,titulaire,solde,debitmax,decouvert) VALUES ("+null+","+this.numero+","+this.titulaire+","+this.solde+","+this.debitmax+","+this.decouvert+")";
             executeQuery(query);
-            System.out.println("added record avec solde ");
+            String info = "le compte a été bien créé";
+            alert(info);
         }
     }
+
+    /**
+     * cette méthode execute les requete qui sont effectuées dans la base de donnée
+     * @param query
+     */
     private void executeQuery(String query){
         Connection connection = Dbe.getConnection();
         Statement statement;
@@ -205,9 +232,11 @@ public class Compte {
      */
     public void situationCompte(){
         if(this.solde >= 0 ){
-            System.out.println("Votre compte est en règle");
+            String info = "Votre compte est en règle";
+            alert(info);
         }else if(this.solde < 0){
-            System.out.println("votre compte est à decouvert");
+            String info = "votre compte est à decouvert";
+            alert(info);
         }
     }
 
@@ -230,7 +259,6 @@ public class Compte {
             resultSet = statement.executeQuery();
             while(resultSet.next()){
                 numeroCompte.add(resultSet.getInt("numero"));
-
             }
             do {
                 nombre = (int)(Math.random()*(max-min)) + min;
@@ -246,9 +274,20 @@ public class Compte {
         return nombre;
     }
 
+    /**
+     * cette méthode cré des petit boite de dialog nous donnant des informations
+     * @param information
+     */
+    private void alert(String information){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("");
+        alert.setContentText(information);
+        alert.showAndWait();
+    }
     public static void main(String[] args) {
         Compte c1 = new Compte();
         c1.createCompte("jay jay okocha",500000);
-        c1.afficher();
+        c1.situationCompte();
     }
 }
