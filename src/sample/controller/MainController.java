@@ -52,6 +52,11 @@ public class MainController {
     public void initialize(){
         voirComptes();
     }
+
+    /**
+     * recupère la liste des comptes
+     * @return
+     */
     public ObservableList<Compte> getComptes(){
         ObservableList<Compte> compteslist = FXCollections.observableArrayList();
         Connection connection = Dbe.getConnection();
@@ -79,6 +84,9 @@ public class MainController {
         return compteslist;
     }
 
+    /**
+     * lie les colonne du tableau avec les elements à afficher dans le tableau
+     */
     public void voirComptes(){
         ObservableList<Compte> comptes = getComptes();
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -90,6 +98,11 @@ public class MainController {
 
         tvcompte.setItems(comptes);
     }
+
+    /**
+     * gestion des eventements sur les bouttons
+     * @param event
+     */
     public void handler(ActionEvent event){
         if (event.getSource() == crediter) {
             try{

@@ -113,6 +113,9 @@ public class Compte {
     public void crediter(Compte compte, double montant){
         double somme = compte.getSolde();
         somme += montant;
+        String titulaire = compte.getTitulaire();
+        String query = "UPDATE compte SET solde="+somme+" WHERE id="+compte.getId()+"";
+        executeQuery(query);
     }
 
     public ArrayList<Compte> getComptes(){
