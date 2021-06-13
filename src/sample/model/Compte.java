@@ -142,8 +142,7 @@ public class Compte {
     /**
      * on recupere le compte débité et compte à créditer
      * on additionne la somme à transferer au solde du compte selectionné
-     * @param compte1
-     * @param compte2
+     * @param compte
      * @param montant
      */
     public void virement(Compte compte,double montant){
@@ -164,17 +163,11 @@ public class Compte {
         }
 
     }
-
-    /**
-     * cette méthode affiche toutes les information du compte
-     */
-    public void afficher(){
-        System.out.println("le numéro du compte est : "+this.numero);
-        System.out.println("le propritaire du compte est : "+this.titulaire);
-        System.out.println("le solde du compte est : "+this.solde+" FCFA");
-        System.out.println("le decouvert du compte est : "+this.decouvert+" FCFA");
-        System.out.println("le debit maximum du compte est : "+this.debitmax+" FCFA");
-        situationCompte();
+    public void modifier(Compte compte){
+        String query = "UPDATE compte SET debitmax ="+compte.debitmax+",decouvert="+compte.getDecouvert()+" WHERE id="+compte.getId()+"";
+        executeQuery(query);
+        String info = "le compte a été mofifié";
+        alert(info);
     }
 
     /**
@@ -208,7 +201,38 @@ public class Compte {
             alert(info);
         }
     }
+    public void supprimer(int id){
+        String query = "DELETE FROM compte WHERE id="+id+"";
+        executeQuery(query);
+        String info = "le compte a été supprimé avec success";
+        alert(info);
+    }
 
+    /**
+     * cette méthode affiche toutes les information du compte
+     */
+    public void afficher(){
+        System.out.println("le numéro du compte est : "+this.numero);
+        System.out.println("le propritaire du compte est : "+this.titulaire);
+        System.out.println("le solde du compte est : "+this.solde+" FCFA");
+        System.out.println("le decouvert du compte est : "+this.decouvert+" FCFA");
+        System.out.println("le debit maximum du compte est : "+this.debitmax+" FCFA");
+        situationCompte();
+    }
+
+    /**
+     * verifie si le solde du compte est supérieur ou inferieur à zero
+     * et nous revoie l'état du compte
+     */
+    public void situationCompte(){
+        if(this.solde >= 0 ){
+            String info = "Votre compte est en règle";
+            alert(info);
+        }else if(this.solde < 0){
+            String info = "votre compte est à decouvert";
+            alert(info);
+        }
+    }
     /**
      * cette méthode execute les requete qui sont effectuées dans la base de donnée
      * @param query
@@ -226,19 +250,8 @@ public class Compte {
         }
 
     }
-    /**
-     * verifie si le solde du compte est supérieur ou inferieur à zero
-     * et nous revoie l'état du compte
-     */
-    public void situationCompte(){
-        if(this.solde >= 0 ){
-            String info = "Votre compte est en règle";
-            alert(info);
-        }else if(this.solde < 0){
-            String info = "votre compte est à decouvert";
-            alert(info);
-        }
-    }
+
+
 
     /**
      * methode qui génère un nombre à 8 chiffre de manière aléatoire

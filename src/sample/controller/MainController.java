@@ -4,12 +4,14 @@ import com.mysql.cj.protocol.Resultset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.Compte;
 import sample.model.Dbe;
@@ -130,8 +132,30 @@ public class MainController {
             voirComptes();
         }
         else if(event.getSource() == modifier){
-
+            MouseEvent ev = null;
+            Compte c2 = mousehandle(ev);
+            double debmx = c2.getDebitmax();
+            double decou = c2.getDecouvert();
+            int id = c2.getId();
+            String titulaire = c2.getTitulaire();
+            try{
+                Stage stage = (Stage) modifier.getScene().getWindow();
+                Stage ps = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/vue/modifier.fxml"));
+                Parent root = (Parent) loader.load();
+                ps.setScene(new Scene(root,400,400));
+                ps.setTitle("modifier un compte");
+                ModifierController mc = loader.getController();
+                mc.func(id,titulaire,debmx,decou);
+                ps.show();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }else if(event.getSource() == supprimer){
+            MouseEvent e = null;
+            Compte c1 = mousehandle(e);
+            int id = c1.getId();
+            c1.supprimer(id);
 
         }else if(event.getSource() == ouvrircompte){
 
@@ -147,5 +171,9 @@ public class MainController {
             }
 
         }
+    }
+    public Compte mousehandle(MouseEvent event){
+        Compte compte = tvcompte.getSelectionModel().getSelectedItem();
+        return compte;
     }
 }

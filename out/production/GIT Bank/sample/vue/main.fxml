@@ -14,7 +14,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="532.0" prefWidth="423.0">
                <children>
-                  <TableView fx:id="tvcompte" layoutX="11.0" layoutY="18.0" prefHeight="479.0" prefWidth="501.0">
+                  <TableView fx:id="tvcompte" layoutX="11.0" layoutY="18.0" onMouseClicked="#mousehandle" prefHeight="479.0" prefWidth="501.0">
                     <columns>
                       <TableColumn fx:id="colid" maxWidth="1100.0" minWidth="30.0" prefWidth="50.0" text="id" />
                       <TableColumn fx:id="colNumero" maxWidth="1000.0" minWidth="30.0" prefWidth="83.0" text="numero" />
