@@ -2,17 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/controller/ModifierController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/modifier.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/controller/ModifierController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/vue/modifier.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/model/BankAppLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/model/Transaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/vue/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/vue/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/model/Admin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/model/Compte.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/model/Compte.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/crediter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/crediter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/creer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/creer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/modifier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/modifier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/virement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GIT Bank/sample/vue/virement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/Compte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vue/crediter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vue/crediter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vue/creer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vue/creer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/vue/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vue/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vue/modifier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vue/modifier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vue/virement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vue/virement.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +122,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -133,6 +150,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -146,11 +164,13 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="C:/jdbc/mysql-connector-java-8.0.25.jar!/" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -281,12 +301,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:bank@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -307,7 +322,10 @@
       <workItem from="1623426592926" duration="4925000" />
       <workItem from="1623462606319" duration="9407000" />
       <workItem from="1623497642402" duration="9935000" />
-      <workItem from="1623543045504" duration="7353000" />
+      <workItem from="1623543045504" duration="9656000" />
+      <workItem from="1623610050133" duration="20398000" />
+      <workItem from="1623665711663" duration="934000" />
+      <workItem from="1623667226119" duration="248000" />
     </task>
     <servers />
   </component>
@@ -316,6 +334,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
@@ -331,41 +350,49 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1623500381003" />
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1623497903575">
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1623622728160">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1623497903575" />
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1623622728160" />
     <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1623426798146">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1623426798146" />
-    <state width="1323" height="187" key="GridCell.Tab.0.bottom" timestamp="1623549748611">
+    <state width="1323" height="188" key="GridCell.Tab.0.bottom" timestamp="1623667474148">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1623549748611" />
-    <state width="1323" height="187" key="GridCell.Tab.0.center" timestamp="1623549748610">
+    <state width="1323" height="188" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1623667474148" />
+    <state width="1323" height="188" key="GridCell.Tab.0.center" timestamp="1623667474148">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1623549748610" />
-    <state width="1323" height="187" key="GridCell.Tab.0.left" timestamp="1623549748610">
+    <state width="1323" height="188" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1623667474148" />
+    <state width="1323" height="188" key="GridCell.Tab.0.left" timestamp="1623667474148">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1623549748610" />
-    <state width="1323" height="187" key="GridCell.Tab.0.right" timestamp="1623549748610">
+    <state width="1323" height="188" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1623667474148" />
+    <state width="1323" height="188" key="GridCell.Tab.0.right" timestamp="1623667474148">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="187" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1623549748610" />
+    <state width="1323" height="188" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1623667474148" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1623553983113">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1623553983113" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1623464693021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1623464693021" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1623543047971">
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1623667225946">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1623543047971" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1623667225946" />
     <state x="678" y="147" key="extract.method.dialog" timestamp="1623470870077">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="678" y="147" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1623470870077" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1623610842399">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1623610842399" />
   </component>
 </project>

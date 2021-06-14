@@ -7,20 +7,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreerController">
+<AnchorPane prefHeight="400.0" prefWidth="430.0" styleClass="login" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreerController">
    <children>
-      <Text layoutX="211.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OUVRIR UN COMPTE" textAlignment="JUSTIFY">
+      <Text fill="WHITE" layoutX="108.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OUVRIR UN COMPTE" textAlignment="JUSTIFY">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <AnchorPane layoutX="112.0" layoutY="92.0" prefHeight="217.0" prefWidth="376.0">
+      <AnchorPane layoutX="27.0" layoutY="101.0" prefHeight="217.0" prefWidth="316.0">
          <children>
-            <Label layoutX="57.0" layoutY="45.0" text="Titulaire" />
-            <TextField fx:id="nom" layoutX="126.0" layoutY="41.0" prefHeight="25.0" prefWidth="211.0" />
-            <Label layoutX="64.0" layoutY="88.0" text="Solde" />
-            <TextField fx:id="solde" accessibleText="0" layoutX="126.0" layoutY="84.0" prefHeight="25.0" prefWidth="211.0" />
-            <Button fx:id="creer" layoutX="126.0" layoutY="128.0" mnemonicParsing="false" onAction="#creercompte" prefHeight="25.0" prefWidth="211.0" text="CREER" />
+            <Label layoutX="25.0" layoutY="45.0" text="TITULAIRE" textFill="WHITE" />
+            <TextField fx:id="nom" layoutX="94.0" layoutY="41.0" prefHeight="25.0" prefWidth="211.0" />
+            <Label layoutX="37.0" layoutY="88.0" text="SOLDE" textFill="WHITE" />
+            <TextField fx:id="solde" accessibleText="0" layoutX="94.0" layoutY="84.0" prefHeight="25.0" prefWidth="211.0" />
+            <Button fx:id="creer" layoutX="94.0" layoutY="128.0" mnemonicParsing="false" onAction="#creercompte" prefHeight="25.0" prefWidth="211.0" style="-fx-background-color: #00837A;" text="CREER" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

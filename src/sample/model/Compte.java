@@ -1,12 +1,15 @@
 package sample.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public class Compte {
+public class Compte implements BankAppLog {
     private int id;
     private int numero;
     private String titulaire;
@@ -114,16 +117,13 @@ public class Compte {
      */
     public void crediter(Compte compte, double montant){
         double somme = compte.getSolde();
+        String statut = "reussie";
+        String type = "crediter";
         somme += montant;
         String titulaire = compte.getTitulaire();
         String query = "UPDATE compte SET solde="+somme+" WHERE id="+compte.getId()+"";
         executeQuery(query);
-    }
-
-    public ArrayList<Compte> getComptes(){
-        ArrayList<Compte> comptes = new ArrayList();
-
-        return comptes;
+        addLog(somme,statut,compte.titulaire,type,compte.id);
     }
     /**
      * debiter le solde du montant selectionné
@@ -146,17 +146,24 @@ public class Compte {
      * @param montant
      */
     public void virement(Compte compte,double montant){
+        String statut = "";
+        String type = "virement";
         if(montant > this.debitmax){
+            statut = "echec";
+            addLog(montant,statut,compte.getTitulaire(),type,this.id);
             String info = "Opérartion annulée, le montant à debiter est supperieur au débit maximum autorisé";
             alert(info);
         }else if ((this.solde - Math.abs(montant)) < - this.decouvert  ){
+            statut = "echec";
+            addLog(montant,statut,compte.getTitulaire(),type,this.id);
             String info = "Opération annulée, le solde de votre compte sera inférieur au decouvert de votre compte";
             alert(info);
         }else{
-
+            statut = "reussie";
             this.solde -= montant;
             String queryexpediteur = "UPDATE compte SET solde="+this.solde+" WHERE id="+this.id+"";
             executeQuery(queryexpediteur);
+            addLog(montant,statut,compte.getTitulaire(),type,this.id);
             compte.crediter(compte, montant);
             String info = montant+" FCA a été viré de "+this.getTitulaire()+" au profit de "+compte.getTitulaire();
             alert(info);
@@ -164,8 +171,12 @@ public class Compte {
 
     }
     public void modifier(Compte compte){
+        String type = "modification";
+        String statut = "reussie";
+        double montant = 0;
         String query = "UPDATE compte SET debitmax ="+compte.debitmax+",decouvert="+compte.getDecouvert()+" WHERE id="+compte.getId()+"";
         executeQuery(query);
+        addLog(montant,statut,compte.titulaire,type,compte.id);
         String info = "le compte a été mofifié";
         alert(info);
     }
@@ -186,8 +197,6 @@ public class Compte {
             this.debitmax = 3000;
             String query = "INSERT INTO compte(id,numero,titulaire,solde,debitmax,decouvert) VALUES("+null+","+this.numero+","+this.titulaire+","+this.solde+","+this.debitmax+","+this.decouvert+")";
             executeQuery(query);
-            String info = "le compte a été bien créé";
-            alert(info);
 
         }else{
             this.numero = genererNum();
@@ -201,36 +210,51 @@ public class Compte {
             alert(info);
         }
     }
-    public void supprimer(int id){
-        String query = "DELETE FROM compte WHERE id="+id+"";
-        executeQuery(query);
-        String info = "le compte a été supprimé avec success";
-        alert(info);
+    public void supprimer(Compte compte){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Voulez-vous supprimer "+compte.getTitulaire()+" ?");
+        alert.setContentText("");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            String query = "DELETE FROM compte WHERE id="+compte.getId()+"";
+            executeQuery(query);
+            String query2 = "DELETE FROM transaction WHERE compteid="+compte.getId()+"";
+            executeQuery(query2);
+            String info = "le compte a été supprimé avec success";
+            alert(info);
+        }
+
     }
 
     /**
      * cette méthode affiche toutes les information du compte
      */
-    public void afficher(){
+    public void afficher(Compte compte){
         System.out.println("le numéro du compte est : "+this.numero);
         System.out.println("le propritaire du compte est : "+this.titulaire);
         System.out.println("le solde du compte est : "+this.solde+" FCFA");
         System.out.println("le decouvert du compte est : "+this.decouvert+" FCFA");
         System.out.println("le debit maximum du compte est : "+this.debitmax+" FCFA");
-        situationCompte();
+        compte.situationCompte(compte);
     }
 
     /**
      * verifie si le solde du compte est supérieur ou inferieur à zero
      * et nous revoie l'état du compte
      */
-    public void situationCompte(){
-        if(this.solde >= 0 ){
+    public void situationCompte(Compte compte){
+        if(compte.solde >= 0 ){
             String info = "Votre compte est en règle";
             alert(info);
-        }else if(this.solde < 0){
+
+            System.out.println("ok");
+        }else if(compte.solde < 0){
             String info = "votre compte est à decouvert";
             alert(info);
+
+            System.out.println("ok");
         }
     }
     /**
@@ -298,9 +322,55 @@ public class Compte {
         alert.setContentText(information);
         alert.showAndWait();
     }
-    public static void main(String[] args) {
-        Compte c1 = new Compte();
-        c1.createCompte("jay jay okocha",500000);
-        c1.situationCompte();
+
+    /**
+     * retourne un tableau de transaction
+     * @param compteid
+     * @return
+     */
+    @Override
+    public ObservableList<Transaction> getLog(int compteid) {
+        ObservableList<Transaction> transList = FXCollections.observableArrayList();
+        Connection connection = Dbe.getConnection();
+        String query = "SELECT * FROM transaction WHERE compteid="+compteid+"";
+        Statement statement;
+        ResultSet rs;
+        try {
+            statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            Transaction transaction;
+            while(rs.next()){
+                transaction = new Transaction(
+                        rs.getInt("id"),
+                        rs.getDouble("montant"),
+                        rs.getString("statut"),
+                        rs.getString("destinataire"),
+                        rs.getString("type"),
+                        rs.getInt("compteid")
+                );
+                transList.add(transaction);
+            }
+        }catch (SQLException e){
+            System.out.println("Erreur :" +e.getMessage());
+        }
+        return transList;
+    }
+
+    /**
+     * ajouter chaque opérations éffectué en base de donnée
+     * @param montant
+     * @param statut
+     * @param dest
+     * @param type
+     * @param compteid
+     */
+    @Override
+    public void addLog(double montant, String statut, String dest, String type,int compteid) {
+            String st = "'"+statut+"'";
+            String dst = "'"+dest+"'";
+            String typ = "'"+type+"'";
+            String query = "INSERT INTO transaction (id,montant,statut,destinataire,type,compteid) "
+                    +"VALUES ("+null+","+montant+","+st+","+dst+","+typ+","+compteid+")";
+            executeQuery(query);
     }
 }

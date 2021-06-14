@@ -1,20 +1,21 @@
 package sample.controller;
 
-import com.mysql.cj.protocol.Resultset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.Compte;
 import sample.model.Dbe;
+import sample.model.Transaction;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -23,6 +24,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MainController {
+
+    public TableView<Transaction> tvoperation;
+    public TableColumn<Transaction,Integer> opid;
+    public TableColumn<Transaction,Double> opmontant;
+    public TableColumn<Transaction,String> opstatut;
+    public TableColumn<Transaction,String> optype;
+    public TableColumn<Transaction,String> opdestinataire;
     @FXML
     public TableView<Compte> tvcompte;
     @FXML
@@ -47,6 +55,8 @@ public class MainController {
     private Button supprimer;
     @FXML
     public Button ouvrircompte;
+    @FXML
+    public Button situation;
 
     @FXML
     public Button actualiser;
@@ -54,6 +64,7 @@ public class MainController {
     public void initialize(){
         voirComptes();
     }
+
 
     /**
      * recupère la liste des comptes
@@ -97,8 +108,8 @@ public class MainController {
         colSolde.setCellValueFactory(new PropertyValueFactory<>("solde"));
         colDebitMax.setCellValueFactory(new PropertyValueFactory<>("debitmax"));
         colDecouvert.setCellValueFactory(new PropertyValueFactory<>("decouvert"));
-
         tvcompte.setItems(comptes);
+
     }
 
     /**
@@ -111,7 +122,7 @@ public class MainController {
                 Stage stage = (Stage) crediter.getScene().getWindow();
                 Stage ps = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/sample/vue/crediter.fxml"));
-                ps.setScene(new Scene(root,600,600));
+                ps.setScene(new Scene(root));
                 ps.setTitle("creer un compte");
                 ps.show();
             }catch (IOException e){
@@ -122,8 +133,9 @@ public class MainController {
                 Stage stage = (Stage) virement.getScene().getWindow();
                 Stage ps = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/sample/vue/virement.fxml"));
-                ps.setScene(new Scene(root,600,600));
+                ps.setScene(new Scene(root));
                 ps.setTitle("creer un compte");
+                ps.getIcons().add(new Image("/sample/icon.png"));
                 ps.show();
             }catch (IOException e){
                 e.printStackTrace();
@@ -143,8 +155,9 @@ public class MainController {
                 Stage ps = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/vue/modifier.fxml"));
                 Parent root = (Parent) loader.load();
-                ps.setScene(new Scene(root,400,400));
+                ps.setScene(new Scene(root));
                 ps.setTitle("modifier un compte");
+                ps.getIcons().add(new Image("/sample/icon.png"));
                 ModifierController mc = loader.getController();
                 mc.func(id,titulaire,debmx,decou);
                 ps.show();
@@ -153,9 +166,10 @@ public class MainController {
             }
         }else if(event.getSource() == supprimer){
             MouseEvent e = null;
-            Compte c1 = mousehandle(e);
-            int id = c1.getId();
-            c1.supprimer(id);
+            Compte compte = mousehandle(e);
+            compte.supprimer(compte);
+            voirComptes();
+
 
         }else if(event.getSource() == ouvrircompte){
 
@@ -163,17 +177,29 @@ public class MainController {
                 Stage stage = (Stage) ouvrircompte.getScene().getWindow();
                 Stage ps = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/sample/vue/creer.fxml"));
-                ps.setScene(new Scene(root,600,600));
+                ps.setScene(new Scene(root));
                 ps.setTitle("creer un compte");
+                ps.getIcons().add(new Image("/sample/icon.png"));
                 ps.show();
             }catch (IOException e){
                 e.printStackTrace();
             }
 
+        }else if(event.getSource() == situation){
+            MouseEvent e = null;
+            Compte compte = mousehandle(e);
+            compte.situationCompte(compte);
         }
     }
     public Compte mousehandle(MouseEvent event){
         Compte compte = tvcompte.getSelectionModel().getSelectedItem();
+        ObservableList<Transaction> transaction = compte.getLog(compte.getId());
+        opid.setCellValueFactory(new PropertyValueFactory<>("compteid"));
+        opdestinataire.setCellValueFactory(new PropertyValueFactory<>("destinataire"));
+        opmontant.setCellValueFactory(new PropertyValueFactory<>("montant"));
+        opstatut.setCellValueFactory(new PropertyValueFactory<>("statut"));
+        optype.setCellValueFactory(new PropertyValueFactory<>("type"));
+        tvoperation.setItems(transaction);
         return compte;
     }
 }

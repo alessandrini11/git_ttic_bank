@@ -8,28 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.VirementController">
+<AnchorPane prefHeight="391.0" prefWidth="467.0" styleClass="login" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.VirementController">
    <children>
-      <Text layoutX="176.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EFFECTUER UN VIREMEMENT">
+      <Text fill="WHITE" layoutX="55.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EFFECTUER UN VIREMEMENT">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="destinataire" layoutX="225.0" layoutY="156.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="expedieteur" layoutX="225.0" layoutY="104.0" prefWidth="150.0" />
-      <Button fx:id="effectuervirement" layoutX="225.0" layoutY="238.0" mnemonicParsing="false" onAction="#virement" prefHeight="25.0" prefWidth="150.0" text="EFFECTUER" />
-      <TextField fx:id="montantvirer" layoutX="226.0" layoutY="200.0" />
-      <Label layoutX="149.0" layoutY="203.0" text="Montant">
+      <ChoiceBox fx:id="destinataire" layoutX="193.0" layoutY="157.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="expedieteur" layoutX="193.0" layoutY="105.0" prefWidth="150.0" />
+      <Button fx:id="effectuervirement" layoutX="193.0" layoutY="240.0" mnemonicParsing="false" onAction="#virement" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #00837A;" text="EFFECTUER" textFill="WHITE" />
+      <TextField fx:id="montantvirer" layoutX="194.0" layoutY="201.0" />
+      <Label layoutX="101.0" layoutY="204.0" text="MONTANT" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="143.0" layoutY="107.0" text="Expediteur">
+      <Label layoutX="96.0" layoutY="107.0" text="EXPEDITEUR" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="139.0" layoutY="159.0" text="Destinataire">
+      <Label layoutX="92.0" layoutY="159.0" text="DESTINATAIRE" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font>

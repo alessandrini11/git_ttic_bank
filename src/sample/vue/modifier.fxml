@@ -41,22 +41,22 @@
 
 <VBox prefHeight="309.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModifierController">
   <children>
-    <AnchorPane maxHeight="-1.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" prefHeight="200.0" prefWidth="200.0" styleClass="login" stylesheets="@style.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="111.0" layoutY="45.0" text="MODIFIER UN COMPTE">
+            <Label layoutX="111.0" layoutY="45.0" text="MODIFIER UN COMPTE" textFill="#eeeaea">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="81.0" layoutY="155.0" text="DEBIT MAX" />
+            <Label layoutX="81.0" layoutY="155.0" text="DEBIT MAX" textFill="#eeeaea" />
             <TextField fx:id="debitmax" layoutX="159.0" layoutY="151.0" />
-            <Label layoutX="78.0" layoutY="193.0" text="DECOUVERT" />
+            <Label layoutX="78.0" layoutY="193.0" text="DECOUVERT" textFill="#eeeaea" />
             <TextField fx:id="decouvert" layoutX="159.0" layoutY="189.0" />
-            <Button fx:id="modifier" layoutX="159.0" layoutY="224.0" mnemonicParsing="false" onAction="#modifiercompte" prefHeight="25.0" prefWidth="149.0" text="MODIFIER" />
+            <Button id="connexion" fx:id="modifier" layoutX="159.0" layoutY="224.0" mnemonicParsing="false" onAction="#modifiercompte" prefHeight="25.0" prefWidth="149.0" stylesheets="@style.css" text="MODIFIER" textFill="WHITE" />
             <TextField fx:id="id" editable="false" layoutX="159.0" layoutY="82.0" />
             <TextField fx:id="titulaire" editable="false" layoutX="159.0" layoutY="117.0" />
-            <Label layoutX="106.0" layoutY="86.0" text="ID" />
-            <Label layoutX="82.0" layoutY="121.0" text="TITULAIRE" />
+            <Label layoutX="106.0" layoutY="86.0" text="ID" textFill="#eeeaea" />
+            <Label layoutX="82.0" layoutY="121.0" text="TITULAIRE" textFill="#eeeaea" />
          </children>
     </AnchorPane>
   </children>
